@@ -48,7 +48,11 @@ const News = ({ simplified }) => {
 
       {cryptoNews?.map((news, i) => (
         <Col xs={24} sm={12} lg={8} key={i}>
-          <Card hoverable className="news-card">
+          <Card
+            hoverable
+            className="news-card"
+            style={{ maxWidth: "450px", maxHeight: "250px" }}
+          >
             <a href={news.link} target="_blank" rel="noreferrer">
               <div className="news-image-container">
                 <Title className="news-title" level={4}>
@@ -67,9 +71,10 @@ const News = ({ simplified }) => {
                 )}
               </div>
               <p>
-                {news.summary > 100
+                {news.summary.length >= 100
                   ? `${news.summary.substring(0, 100)} `
-                  : news.summary}...
+                  : news.summary}
+                ...
               </p>
               <div className="provider-container">
                 <div>
