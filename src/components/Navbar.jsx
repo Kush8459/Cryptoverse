@@ -32,6 +32,12 @@ const Navbar = () => {
     }
   }, [screenSize]);
 
+  function handleMenuClick() {
+    if (screenSize <= 800) {
+      setActiveMenu(!activeMenu);
+    }
+  }
+
   return (
     <div className="nav-container">
       <div className="logo-container">
@@ -41,24 +47,32 @@ const Navbar = () => {
         </Typography.Title>
         <Button
           className="menu-control-container"
-          onClick={() => setActiveMenu(!activeMenu)}
+          onClick={() => handleMenuClick()}
         >
           <MenuOutlined />
         </Button>
       </div>
       {activeMenu && (
         <Menu theme="dark">
-          <Menu.Item key="item1" onClick={() => setActiveMenu(!activeMenu)} icon={<HomeOutlined />}>
+          <Menu.Item
+            key="item1"
+            onClick={() => handleMenuClick()}
+            icon={<HomeOutlined />}
+          >
             <Link to="/">Home</Link>
           </Menu.Item>
           <Menu.Item
             key="item2"
-            onClick={() => setActiveMenu(!activeMenu)}
+            onClick={() => setActiveMenu(activeMenu)}
             icon={<FundOutlined />}
           >
             <Link to="/cryptocurrencies">Cryptocurrencies</Link>
           </Menu.Item>
-          <Menu.Item key="item3" onClick={() => setActiveMenu(!activeMenu)} icon={<BulbOutlined />}>
+          <Menu.Item
+            key="item3"
+            onClick={() => handleMenuClick()}
+            icon={<BulbOutlined />}
+          >
             <Link to="/news">News</Link>
           </Menu.Item>
         </Menu>
